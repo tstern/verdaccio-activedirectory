@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "nowhammies",
-  "contributtors" : [" ela-compil","theundefined","devnill"],
+  "contributtors": [
+    " ela-compil",
+    "theundefined",
+    "devnill"
+  ],
   "license": "MIT",
   "keywords": [
     "verdaccio",
@@ -19,7 +23,7 @@
     "url": "https://github.com/nowhammies/verdaccio-activedirectory.git"
   },
   "dependencies": {
-    "activedirectory": "^0.7.2",
+    "activedirectory2": "^2.1.0",
     "lodash": "^4.13.1"
   }
 }
