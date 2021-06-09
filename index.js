@@ -1,6 +1,6 @@
 'use strict';
 
-var ActiveDirectory = require('activedirectory');
+var ActiveDirectory = require('activedirectory2');
 var _ = require('lodash');
 
 function Plugin(config, stuff) {
@@ -14,7 +14,7 @@ function Plugin(config, stuff) {
 Plugin.prototype.authenticate = function(user, password, callback) {
 	var self = this;
 	var username = user + '@' + this._config.domainSuffix;
-	
+
 	var connection = new ActiveDirectory(_.extend(this._config, { username: username, password: password }));
 	connection.on('error', function(error) {
 		self._logger.warn('Active Directory connection error. Error:', error);
@@ -32,7 +32,7 @@ Plugin.prototype.authenticate = function(user, password, callback) {
 			return callback(new Error(message));
 		}
 
-		if(self._config.groupName) {	
+		if(self._config.groupName) {
 			connection.getGroupMembershipForUser(username, function(err, userGroups){
 				if (err) {
 					self._logger.warn('Active Directory group check failed. Error code:', err.code + '.', 'Error:\n', err);
@@ -41,7 +41,7 @@ Plugin.prototype.authenticate = function(user, password, callback) {
 
 				// cast groupName to an array of groupname if a single one is provided.
 				var requestedGroups = Array.isArray(self._config.groupName) ? self._config.groupName : [self._config.groupName];
-				
+
 				// figure out which of the required groups exist on the user, if any.
 				var matchingGroups = userGroups.reduce(function getGroupNames(acc, group){
 					return acc.concat(requestedGroups.filter(function(requestedGroup){

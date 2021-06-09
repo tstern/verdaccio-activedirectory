@@ -19,6 +19,7 @@
     "url": "https://github.com/nowhammies/verdaccio-activedirectory.git"
   },
   "dependencies": {
+    "activedirectory2": "^2.1.0",
     "lodash": "^4.13.1"
   }
 }
